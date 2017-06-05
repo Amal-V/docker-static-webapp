@@ -7,6 +7,11 @@ pipeline {
                 sudo docker build -t web-app .
             }
         }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
         stage('Deploy') {
             steps {
                 sudo docker run -d -p 9999:8080 webapp
