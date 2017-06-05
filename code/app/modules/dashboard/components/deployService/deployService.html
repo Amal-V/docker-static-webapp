@@ -1,0 +1,46 @@
+<md-dialog aria-label="Deploy new Service">
+    <form name="Form">
+      <md-toolbar>
+        <div class="md-toolbar-tools" style="min-width:400px;">
+          <h2>Deploy new Service</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="deployServiceCtrl.cancel()">
+            <md-icon md-svg-src="fonts/close_white.svg" aria-label="Close dialog"></md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <md-dialog-content>
+        <md-progress-linear ng-if="deployServiceCtrl.isLoading" md-mode="indeterminate"></md-progress-linear>
+        <div class="md-dialog-content">
+          <md-input-container class="md-block">
+            <label>Username</label>
+            <input type="text" name="username"
+                   ng-disabled="deployServiceCtrl.isLoading"
+                   ng-model="deployServiceCtrl.username" required="" />
+            <div ng-messages="Form.username.$error" ng-hide="Form.username.$valid">
+                <div ng-message="required" class="my-message">Please enter your name.
+                </div>
+            </div>
+          </md-input-container>
+          <md-select placeholder="Select Service"
+                     ng-disabled="deployServiceCtrl.isLoading"
+                     ng-model="deployServiceCtrl.service"
+                     ng-change="deployServiceCtrl.loadBranches()"
+                     required="required">
+            <md-option ng-value="service" ng-repeat="service in deployServiceCtrl.services" >{{service}}</md-option>
+          </md-select>
+          <md-select placeholder="Select Branch"
+                     ng-model="deployServiceCtrl.branch"
+                     ng-disabled="!deployServiceCtrl.service || deployServiceCtrl.isLoading"
+                     required="required">
+            <md-option ng-value="branch" ng-repeat="branch in deployServiceCtrl.branches" >{{branch}}</md-option>
+          </md-select>
+          <md-button type="submit" style="float: right"
+                ng-disabled="!Form.$valid || deployServiceCtrl.isApiPending" ng-click="deployServiceCtrl.deploy()"
+                class="md-raised md-primary">Deploy
+          </md-button>
+        </div>
+      </md-dialog-content>
+    </form>
+
+</md-dialog>

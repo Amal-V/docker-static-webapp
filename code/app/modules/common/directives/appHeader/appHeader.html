@@ -1,0 +1,12 @@
+<md-toolbar class="md-accent md-hue-2">
+  <div class="md-toolbar-tools">
+    <md-button ng-if="appHeaderController.loggedUserName !== undefined"
+      class="md-icon-button" aria-label="Menu" ng-click="appHeaderController.toggleSideNav()"
+      hide-gt-sm>
+      <md-icon md-svg-icon="fonts/menu.svg"></md-icon>
+    </md-button>
+    <md-truncate>
+      {{appHeaderController.title}}
+    </md-truncate>
+  </div>
+</md-toolbar>
