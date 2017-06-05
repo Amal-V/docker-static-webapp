@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sudo docker build -t web-app .
+                echo 'sudo docker build -t web-app .'
             }
         }
         stage('Test') {
@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sudo docker run -d -p 9999:8080 webapp
+                echo 'sudo docker run -d -p 9999:8080 webapp'
             }
         }
     }
