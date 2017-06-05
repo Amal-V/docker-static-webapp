@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                sudo docker build -t web-app .
             }
         }
         stage('Test') {
