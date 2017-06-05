@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'sudo docker run -d -p 9999:8080 web-app'
+                echo 'sudo docker run -d web-app'
             }
         }
     }
