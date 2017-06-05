@@ -4,17 +4,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
+                docker build -t web-app .
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                docker run -d -p 9999:8080 webapp
             }
         }
     }
