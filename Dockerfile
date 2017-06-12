@@ -1,14 +1,15 @@
-FROM node
+FROM node:boron
 
 COPY code/ /opt/server
 COPY entrypoint.sh /opt/entrypoint.sh
-EXPOSE 8080
+WORKDIR /opt/server
+RUN npm install
+EXPOSE 9000
 RUN chmod +x /opt/entrypoint.sh
 
 ENV SERVICE_URL_1 www.google.com
 ENV SERVICE_URL_2 www.facebook.com
 
-RUN npm install -g http-server
 CMD /opt/entrypoint.sh
 
 
